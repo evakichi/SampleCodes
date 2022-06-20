@@ -12,7 +12,7 @@ int main(int argc,char *argv[])
   MPI_Comm_rank(MPI_COMM_WORLD,&rank);
 
   for(int i = 0 ; i < 3 ; i++)
-    A[i]=i+rank*3;
+    A[i]=i+rank*3+1;
 
   printf("rank=%d,before A(%d,%d,%d),B(%d,%d,%d,%d,%d,%d)\n",rank,A[0],A[1],A[2],B[0],B[1],B[2],B[3],B[4],B[5]);
   MPI_Allgather(A,3,MPI_INT,B,3,MPI_INT,MPI_COMM_WORLD);
