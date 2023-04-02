@@ -30,16 +30,14 @@ extern int log_2(int n);
 int main(int argc,char *argv[])
 {
   int N=atoi(argv[1]);
-  int size=N;
   int local_size;
-  int i,j,n; 
+  int i; 
   int p;
   int rank;
   int asce;  
 
   int *unsort,*sorted,*local_unsort;
-  int *compare,*bitonic,*tmp;
-  MPI_Status Status;
+  int *compare,*bitonic;
 
   double seq_start,seq_end;
   double start,end;
@@ -102,6 +100,7 @@ end=MPI_Wtime();
       printf("-----------------------------------------------------------\n"); 
    }
    MPI_Finalize();
+   return 0;
 }
 
 int pred(int i,int rank)
@@ -184,7 +183,7 @@ void sorting(int i,int j,int rank,int p,int local_sort[],int compare[],int biton
 
 void scan_and_merge_asce(int local_sort[],int bitonic[],int local_size)
 {
- int i,j,k,l;
+ int i,j,k;
  for(i=0;i<local_size-1;i++)
   if(bitonic[i]==bitonic[i+1])
     continue;
@@ -250,7 +249,7 @@ void merge_asce(int local_sort[],int n,int local_size)
 
 void scan_and_merge_desc(int local_sort[],int bitonic[],int local_size)
 {
- int i,j,k,l;
+ int i,j,k;
  for(i=0;i<local_size-1;i++)
   if(bitonic[i]==bitonic[i+1])
     continue;
@@ -357,9 +356,9 @@ void print_column(char *c,int a[],int n)
  printf(c);
    for (i=0;i<n-1;i++)
    {
-      printf("%ld,",a[i]);
+      printf("%d,",a[i]);
    }
-      printf("%ld\n",a[i]);
+      printf("%d\n",a[i]);
 }
 
 
