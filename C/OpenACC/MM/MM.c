@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <omp.h>
 
-#define N 1200
+#define N 2000
 	int A[N][N];
 	int B[N][N];
 	int C[N][N];
