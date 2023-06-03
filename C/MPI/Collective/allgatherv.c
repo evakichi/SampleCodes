@@ -29,6 +29,7 @@ int main(int argc,char *argv[])
 
   printf("rank=%d,before A(%d,%d,%d),B(%d,%d,%d,%d,%d,%d)\n",rank,A[0],A[1],A[2],B[0],B[1],B[2],B[3],B[4],B[5]);
   MPI_Allgatherv(A,rank+1,MPI_INT,B,R,D,MPI_INT,MPI_COMM_WORLD);
+  MPI_Barrier(MPI_COMM_WORLD);
   printf("rank=%d,after  A(%d,%d,%d),B(%d,%d,%d,%d,%d,%d)\n",rank,A[0],A[1],A[2],B[0],B[1],B[2],B[3],B[4],B[5]);
 
   MPI_Finalize();
