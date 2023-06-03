@@ -318,7 +318,6 @@ void partition(int a[],int p,int q,int *jp,int *ip)
    *jp=j;
 }
 
-
 void swap(int *u,int *v)
 {
    int tmp;
