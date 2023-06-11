@@ -25,7 +25,7 @@ int main(int argc,char *argv[])
   int p;
   int rank;
   
-  int *unsort,*sorted;
+  int *unsort,*unqsort,*sorted;
   int *local_unsort,*local_items,*items,*pivots;
   int *local_exchanged_unsort;
   int *partitions;
@@ -56,6 +56,7 @@ srand((unsigned) time(NULL)*rank);
 rho=calc_rho(p);
 omega=calc_omega(size,p);
 unsort=(int *)malloc(sizeof(int)*N);
+unqsort=(int *)malloc(sizeof(int)*N);
 sorted=(int *)malloc(sizeof(int)*N);
 local_items=(int *)malloc(sizeof(int)*p);
 items=(int *)malloc(sizeof(int)*p*p);
@@ -70,11 +71,11 @@ local_block_sizes=(int *)malloc(sizeof(int)*p);
 
    if(rank==0)
      for (i=0;i<N;i++)
-      unsort[i]=rand()%N;
+      unsort[i]=unqsort[i]=rand()%N;
    
 seq_start=MPI_Wtime();
   if (rank==0){
-     quick_sort(unsort,0,N-1);
+     quick_sort(unqsort,0,N-1);
    }
 seq_end=MPI_Wtime();
 
@@ -141,7 +142,7 @@ end=MPI_Wtime();
 
    if(rank==0)
    {
-      check(unsort,sorted,N);
+      check(unqsort,sorted,N);
       printf("elapsed time=%e (seqential %e)  %3.2f times speedup.\n",(end-start),(seq_end-seq_start),(seq_end-seq_start)/(end-start));
       printf("-----------------------------------------------------------\n"); 
    }
