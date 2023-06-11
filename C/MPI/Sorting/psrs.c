@@ -71,8 +71,6 @@ local_block_sizes=(int *)malloc(sizeof(int)*p);
    if(rank==0)
      for (i=0;i<N;i++)
       unsort[i]=rand()%N;
-
-  MPI_Scatter(unsort,local_size,MPI_INT,local_unsort,local_size,MPI_INT,0,MPI_COMM_WORLD);
    
 seq_start=MPI_Wtime();
   if (rank==0){
@@ -82,6 +80,8 @@ seq_end=MPI_Wtime();
 
 
 start=MPI_Wtime();
+
+  MPI_Scatter(unsort,local_size,MPI_INT,local_unsort,local_size,MPI_INT,0,MPI_COMM_WORLD);
 
    quick_sort(local_unsort,0,local_size-1);
 
