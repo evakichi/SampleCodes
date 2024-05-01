@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+project(SampleCode LANGUAGES C)
+add_subdirectory(C/MPI) 
+add_subdirectory(C/OpenMP) 
+add_subdirectory(C/OpenACC) 

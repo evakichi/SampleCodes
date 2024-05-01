@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+project(OpenACC_C LANGUAGES C)
+set(CMAKE_C_COMPILER pgcc)
+set(CMAKE_C_FLAGS "-Minfo=all -acc=gpu")
+add_executable(OpenACC_MM            ./MM/MM.c)
+target_link_libraries(OpenACC_MM m)

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-project(recipe-01 LANGUAGES C)
+project(MPI_C LANGUAGES C)
 set(CMAKE_C_COMPILER mpicc)
 add_executable(hello            ./hello.c)
 add_executable(allgather        ./Collective/allgather.c)
